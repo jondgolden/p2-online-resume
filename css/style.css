@@ -192,8 +192,7 @@ span {
 #map {
   display: block;
   height: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 0 5%;
 }
 
 #mapDiv {

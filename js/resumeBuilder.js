@@ -100,7 +100,7 @@ if (bio.skills.length > 0) {
 
 for(i in formattedContactInfo) {
   $("#topContacts").append(formattedContactInfo[i]);
-  $("#footerContacts").append(formattedContactInfo)[i];
+  $("#footerContacts").append(formattedContactInfo[i]);
 }
 
 function displayWork() {
