@@ -1,109 +1,72 @@
 // *BIO SECTION*
-var bio = {
-    "name" : "Jonathan Golden",
-    "role" : "Designer & Developer",
-    "welcomeMessage" : "Professional designer. Aspiring developer. Amateur napper.",
-    "skills" : ["Design", "HTML", "CSS", "Collaboration"],
-    "contacts" : {
-        "mobile" : "(423) 284-8120",
-        "email" : "jondgolden@me.com",
-        "github" : "jondgolden",
-        "twitter" : "@jonogolden",
-        "location": "Cleveland, TN"
-    },
-    "picture" : "images/me.jpg"
-};
+function displayBio() {
 
-// *WORK SECTION*
-var work = {
-    "jobs" : [
-        {
-            "employer" : "Life Care Centers of America, Inc.",
-            "title" : "Graphic Designer",
-            "location" : "Cleveland, TN",
-            "dates" : "September 2008 - present",
-            "description" : "I provide art direction for quarterly magazine that is distributed nationwide. Designing marketing collateral which is in use at over 220 locations nationwide."
-        },
-        {
-            "employer" : "Heritage Fellowship Church of God",
-            "title" : "Technical Director",
-            "location" : "Mcdonald, TN",
-            "dates" : "December 2005 - present",
-            "description" : "I supervise the audio/visual team and oversee all aspects of the production side of all services."
-        }
-    ]
-};
+  var bio = {
+      "name" : "Jonathan Golden",
+      "role" : "Designer & Developer",
+      "welcomeMessage" : "Professional designer. Aspiring developer. Amateur napper.",
+      "skills" : ["Design", "HTML", "CSS", "Collaboration"],
+      "contacts" : {
+          "mobile" : "(423) 284-8120",
+          "email" : "jondgolden@me.com",
+          "github" : "jondgolden",
+          "twitter" : "@jonogolden",
+          "location": "Cleveland, TN"
+      },
+      "biopic" : "images/me.jpg"
+  };
 
-// *EDUCATION SECTION*
-var education = {
-    "schools" : [
-        {
-            "name" : "The Art Institute",
-            "location" : "Online",
-            "degree" : "Certificate",
-            "major" : "Visual Design",
-            "dates" : "2010 - 2011",
-            "url" : "aionline.edu"
-        }
-    ],
-    "onlineCourses" : [
-        {
-            "title" : "Front-end Web Development",
-            "school" : "Udacity",
-            "dates" : "April 2015 - present",
-            "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
-        }
-    ]
-};
+  var formattedName = HTMLheaderName.replace("%data%", bio.name);
+  var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+  var formattedBioPic = HTMLbioPic.replace("%data%", bio.biopic);
+  var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
 
-// *PROJECTS SECTION*
-var projects = {
-    "projects" : [
-        {
-            "title" : "Life Matters",
-            "dates" : "Every quarter beginning in 2011",
-            "description" : "A quarterly magazine distributed nationwide.",
-            "image" : ["images/lifematterscover.jpg"]
-        },
-        {
-            "title" : "Leader",
-            "dates" : "Yearly beginning in 2011",
-            "description" : "A yearly special edition publication distributed nationwide.",
-            "image" : ["images/leadercover.jpg"]
-        }
-    ]
-};
+  var formattedContactInfo = [];
+  formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
+  formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
+  formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+  formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.picture);
-var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+  $("#header").prepend(formattedRole);
+  $("#header").prepend(formattedName);
+  $("#header").append(formattedBioPic);
+  $("#header").append(formattedWelcomeMsg);
 
-var formattedContactInfo = [];
-formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
-formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
-formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
+  if (bio.skills.length > 0) {
+      $("#header").append(HTMLskillsStart);
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcomeMsg);
+      for (i in bio.skills) {
+          $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+    }
+  }
 
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-
-    for (i in bio.skills) {
-        $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+  for(i in formattedContactInfo) {
+    $("#topContacts").append(formattedContactInfo[i]);
+    $("#footerContacts").append(formattedContactInfo[i]);
   }
 }
 
-for(i in formattedContactInfo) {
-  $("#topContacts").append(formattedContactInfo[i]);
-  $("#footerContacts").append(formattedContactInfo[i]);
-}
-
+// *WORK SECTION*
 function displayWork() {
+
+  var work = {
+      "jobs" : [
+          {
+              "employer" : "Life Care Centers of America, Inc.",
+              "title" : "Graphic Designer",
+              "location" : "Cleveland, TN",
+              "dates" : "September 2008 - present",
+              "description" : "I provide art direction for quarterly magazine that is distributed nationwide. Designing marketing collateral which is in use at over 220 locations nationwide."
+          },
+          {
+              "employer" : "Heritage Fellowship Church of God",
+              "title" : "Technical Director",
+              "location" : "Mcdonald, TN",
+              "dates" : "December 2005 - present",
+              "description" : "I supervise the audio/visual team and oversee all aspects of the production side of all services."
+          }
+      ]
+  };
 
     if (work.jobs.length > 0) {
 
@@ -127,10 +90,26 @@ function displayWork() {
     }
 };
 
-displayWork();
-
-
+// *PROJECTS SECTION*
 function displayProjects() {
+
+  var projects = {
+      "projects" : [
+          {
+              "title" : "Life Matters",
+              "dates" : "Every quarter beginning in 2011",
+              "description" : "A quarterly magazine distributed nationwide.",
+              "images" : ["images/lifematterscover.jpg"]
+          },
+          {
+              "title" : "Leader",
+              "dates" : "Yearly beginning in 2011",
+              "description" : "A yearly special edition publication distributed nationwide.",
+              "images" : ["images/leadercover.jpg"]
+          }
+      ]
+  };
+
   if(projects.projects.length > 0) {
     for(i in projects.projects) {
       $("#projects").append(HTMLprojectStart);
@@ -143,8 +122,8 @@ function displayProjects() {
       $(".project-entry:last").append(formattedProjectDates);
       $(".project-entry:last").append(formattedProjectDescription);
 
-      for(img in projects.projects[i].image) {
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].image);
+      for(img in projects.projects[i].images) {
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images);
         $(".project-entry:last").append(formattedProjectImage);
       }
 
@@ -152,9 +131,30 @@ function displayProjects() {
   }
 };
 
-displayProjects ();
+// *EDUCATION SECTION*
+function displayEducation() {
 
-function displayEducation () {
+  var education = {
+      "schools" : [
+          {
+              "name" : "The Art Institute of Pittsburgh",
+              "location" : "Pittsburgh, PA",
+              "degree" : "Certificate",
+              "majors" : ["Visual Design"],
+              "dates" : "2010 - 2011",
+              "url" : "aionline.edu"
+          }
+      ],
+      "onlineCourses" : [
+          {
+              "title" : "Front-end Web Development",
+              "school" : "Udacity",
+              "dates" : "April 2015 - present",
+              "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+          }
+      ]
+  };
+
   if(education.schools.length > 0 || education.onlineCourses.length > 0) {
     for(i in education.schools) {
       $("#education").append(HTMLschoolStart);
@@ -163,7 +163,7 @@ function displayEducation () {
       var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
       var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
       var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
-      var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].major);
+      var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors);
 
       $(".education-entry:last").append(formattedSchoolName + formattedSchoolDegree);
       $(".education-entry:last").append(formattedSchoolDates);
@@ -189,6 +189,9 @@ function displayEducation () {
   }
 };
 
-displayEducation ();
+displayBio();
+displayWork();
+displayProjects();
+displayEducation();
 
 $("#mapDiv").append(googleMap);
