@@ -1,20 +1,80 @@
 // *BIO SECTION*
-function displayBio() {
+var bio = {
+    "name" : "Jonathan Golden",
+    "role" : "Designer & Developer",
+    "welcomeMessage" : "Professional designer. Aspiring developer. Amateur napper.",
+    "skills" : ["Design", "HTML", "CSS", "Collaboration"],
+    "contacts" : {
+        "mobile" : "(423) 284-8120",
+        "email" : "jondgolden@me.com",
+        "github" : "jondgolden",
+        "twitter" : "@jonogolden",
+        "location": "Cleveland, TN"
+    },
+    "biopic" : "images/me.jpg"
+};
 
-  var bio = {
-      "name" : "Jonathan Golden",
-      "role" : "Designer & Developer",
-      "welcomeMessage" : "Professional designer. Aspiring developer. Amateur napper.",
-      "skills" : ["Design", "HTML", "CSS", "Collaboration"],
-      "contacts" : {
-          "mobile" : "(423) 284-8120",
-          "email" : "jondgolden@me.com",
-          "github" : "jondgolden",
-          "twitter" : "@jonogolden",
-          "location": "Cleveland, TN"
-      },
-      "biopic" : "images/me.jpg"
-  };
+// *WORK SECTION*
+var work = {
+    "jobs" : [
+        {
+            "employer" : "Life Care Centers of America, Inc.",
+            "title" : "Graphic Designer",
+            "location" : "Cleveland, TN",
+            "dates" : "September 2008 - present",
+            "description" : "I provide art direction for quarterly magazine that is distributed nationwide. Designing marketing collateral which is in use at over 220 locations nationwide."
+        },
+        {
+            "employer" : "Heritage Fellowship Church of God",
+            "title" : "Technical Director",
+            "location" : "Mcdonald, TN",
+            "dates" : "December 2005 - present",
+            "description" : "I supervise the audio/visual team and oversee all aspects of the production side of all services."
+        }
+    ]
+};
+
+// *PROJECTS SECTION*
+var projects = {
+    "projects" : [
+        {
+            "title" : "Life Matters",
+            "dates" : "Every quarter beginning in 2011",
+            "description" : "A quarterly magazine distributed nationwide.",
+            "images" : ["images/lifematterscover.jpg"]
+        },
+        {
+            "title" : "Leader",
+            "dates" : "Yearly beginning in 2011",
+            "description" : "A yearly special edition publication distributed nationwide.",
+            "images" : ["images/leadercover.jpg"]
+        }
+    ]
+};
+
+// *EDUCATION SECTION*
+var education = {
+    "schools" : [
+        {
+            "name" : "The Art Institute of Pittsburgh",
+            "location" : "Pittsburgh, PA",
+            "degree" : "Certificate",
+            "majors" : ["Visual Design"],
+            "dates" : "2010 - 2011",
+            "url" : "aionline.edu"
+        }
+    ],
+    "onlineCourses" : [
+        {
+            "title" : "Front-end Web Development",
+            "school" : "Udacity",
+            "dates" : "April 2015 - present",
+            "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+        }
+    ]
+};
+
+bio.display = function () {
 
   var formattedName = HTMLheaderName.replace("%data%", bio.name);
   var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -44,29 +104,9 @@ function displayBio() {
     $("#topContacts").append(formattedContactInfo[i]);
     $("#footerContacts").append(formattedContactInfo[i]);
   }
-}
+};
 
-// *WORK SECTION*
-function displayWork() {
-
-  var work = {
-      "jobs" : [
-          {
-              "employer" : "Life Care Centers of America, Inc.",
-              "title" : "Graphic Designer",
-              "location" : "Cleveland, TN",
-              "dates" : "September 2008 - present",
-              "description" : "I provide art direction for quarterly magazine that is distributed nationwide. Designing marketing collateral which is in use at over 220 locations nationwide."
-          },
-          {
-              "employer" : "Heritage Fellowship Church of God",
-              "title" : "Technical Director",
-              "location" : "Mcdonald, TN",
-              "dates" : "December 2005 - present",
-              "description" : "I supervise the audio/visual team and oversee all aspects of the production side of all services."
-          }
-      ]
-  };
+work.display = function () {
 
     if (work.jobs.length > 0) {
 
@@ -90,25 +130,7 @@ function displayWork() {
     }
 };
 
-// *PROJECTS SECTION*
-function displayProjects() {
-
-  var projects = {
-      "projects" : [
-          {
-              "title" : "Life Matters",
-              "dates" : "Every quarter beginning in 2011",
-              "description" : "A quarterly magazine distributed nationwide.",
-              "images" : ["images/lifematterscover.jpg"]
-          },
-          {
-              "title" : "Leader",
-              "dates" : "Yearly beginning in 2011",
-              "description" : "A yearly special edition publication distributed nationwide.",
-              "images" : ["images/leadercover.jpg"]
-          }
-      ]
-  };
+projects.display = function () {
 
   if(projects.projects.length > 0) {
     for(i in projects.projects) {
@@ -131,29 +153,7 @@ function displayProjects() {
   }
 };
 
-// *EDUCATION SECTION*
-function displayEducation() {
-
-  var education = {
-      "schools" : [
-          {
-              "name" : "The Art Institute of Pittsburgh",
-              "location" : "Pittsburgh, PA",
-              "degree" : "Certificate",
-              "majors" : ["Visual Design"],
-              "dates" : "2010 - 2011",
-              "url" : "aionline.edu"
-          }
-      ],
-      "onlineCourses" : [
-          {
-              "title" : "Front-end Web Development",
-              "school" : "Udacity",
-              "dates" : "April 2015 - present",
-              "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
-          }
-      ]
-  };
+education.display = function () {
 
   if(education.schools.length > 0 || education.onlineCourses.length > 0) {
     for(i in education.schools) {
@@ -189,9 +189,9 @@ function displayEducation() {
   }
 };
 
-displayBio();
-displayWork();
-displayProjects();
-displayEducation();
+bio.display();
+work.display();
+projects.display();
+education.display();
 
 $("#mapDiv").append(googleMap);
